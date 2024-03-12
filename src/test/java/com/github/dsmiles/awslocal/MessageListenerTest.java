@@ -25,7 +25,7 @@ import static org.testcontainers.containers.localstack.LocalStackContainer.Servi
 public class MessageListenerTest {
 
     @Container
-    private static final LocalStackContainer localStack = new LocalStackContainer(
+    static LocalStackContainer localStack = new LocalStackContainer(
         DockerImageName.parse("localstack/localstack:latest"));
 
     static final String BUCKET_NAME = UUID.randomUUID().toString();
@@ -72,8 +72,7 @@ public class MessageListenerTest {
 
     @Test
     void shouldHandleMessageSuccessfully() {
-        final String helloWorld = "Hello World!";
-        Message message = new Message(UUID.randomUUID(), helloWorld);
+        Message message = new Message(UUID.randomUUID(), "Hello World!");
         messageSender.publish(properties.queue(), message);
 
         await()
@@ -81,8 +80,12 @@ public class MessageListenerTest {
             .atMost(Duration.ofSeconds(10))
             .ignoreExceptions()
             .untilAsserted(() -> {
-                String content = storageService.downloadAsString(properties.bucket(), message.uuid().toString());
-                assertThat(content).isEqualTo(helloWorld);
-            });
+                String content = storageService.downloadAsString(
+                    properties.bucket(),
+                    message.uuid().toString()
+                );
+
+            assertThat(content).isEqualTo("Hello World!");
+        });
     }
 }
