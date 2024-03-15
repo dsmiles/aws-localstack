@@ -1,5 +1,9 @@
 package com.github.dsmiles.awslocal;
 
+import com.github.dsmiles.awslocal.message.Message;
+import com.github.dsmiles.awslocal.message.MessageSender;
+import com.github.dsmiles.awslocal.properties.ApplicationProperties;
+import com.github.dsmiles.awslocal.storage.StorageService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

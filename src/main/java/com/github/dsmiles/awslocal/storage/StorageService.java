@@ -1,4 +1,4 @@
-package com.github.dsmiles.awslocal;
+package com.github.dsmiles.awslocal.storage;
 
 import io.awspring.cloud.s3.S3Template;
 import org.springframework.stereotype.Service;

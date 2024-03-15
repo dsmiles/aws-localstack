@@ -1,5 +1,6 @@
-package com.github.dsmiles.awslocal;
+package com.github.dsmiles.awslocal.message;
 
+import com.github.dsmiles.awslocal.message.Message;
 import io.awspring.cloud.sqs.operations.SqsTemplate;
 import org.springframework.stereotype.Service;
 

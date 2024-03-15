@@ -1,4 +1,4 @@
-package com.github.dsmiles.awslocal;
+package com.github.dsmiles.awslocal.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

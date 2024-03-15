@@ -1,5 +1,7 @@
-package com.github.dsmiles.awslocal;
+package com.github.dsmiles.awslocal.message;
 
+import com.github.dsmiles.awslocal.properties.ApplicationProperties;
+import com.github.dsmiles.awslocal.storage.StorageService;
 import io.awspring.cloud.sqs.annotation.SqsListener;
 import org.springframework.stereotype.Service;
 
