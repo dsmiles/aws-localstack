@@ -28,9 +28,13 @@ public class MessageListenerTest extends BaseContainersTest {
 
     @Test
     void shouldHandleMessageSuccessfully() {
+        // Create a message
         Message message = new Message(UUID.randomUUID(), "Hello World!");
+
+        // Add the message to the queue (SQS
         messageSender.publish(properties.queue(), message);
 
+        // Wait for the message appear in storage (S3)
         await()
             .pollInterval(Duration.ofSeconds(2))
             .atMost(Duration.ofSeconds(10))
@@ -41,7 +45,7 @@ public class MessageListenerTest extends BaseContainersTest {
                     message.uuid().toString()
                 );
 
-            assertThat(content).isEqualTo("Hello World!");
-        });
+                assertThat(content).isEqualTo("Hello World!");
+            });
     }
 }
