@@ -1,4 +1,4 @@
-package com.github.dsmiles.awslocal;
+package com.github.dsmiles.awslocal.message;
 
 import java.util.UUID;
 

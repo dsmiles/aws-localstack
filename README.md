@@ -1,21 +1,36 @@
-# Testing AWS Services with LocalStack and TestContainers
+# Integration Testing AWS Services with LocalStack and TestContainers
 
-This document is a work in progress.
+This repository contains a Spring Cloud for Amazon Web Services project that demonstrates how to use LocalStack and TestContainers to perform integration testing of AWS services. 
 
-Additional content will be added as the project progresses.
+This example uses AWS Simple Queue Service (SQS) to pass messages to a message handler listening on the queue, and then passing it to AWS Simple Storage Service (S3) to store the data.
 
-This project is inspired by my previous experience working on a couple of Spring Boot AWS microservices at a former employer:
+This example project will be expanded to add more AWS services and demonstrate how to use LocalStack and TestContainers to perform integration testing of AWS services.
 
-- UBO Service (Ultimate Beneficial Owner)
-- Metrics Service (Case Management Metrics)
+## Prerequisites
+The following components are required to run the example:
 
-These services utilized AWS SQS, DynamoDB, and S3 to function. Additionally, they interfaced with third-party REST APIs to gather supplementary data from sources such as Companies House, Creditsafe, Lexis Nexis, etc.
+- Java 17
+- JUnit 5
+- Spring Cloud for AWS
+- Maven
+- Docker Desktop 4.27.2
+- Testcontainers
+- Testcontainers JUnit 5 Extension
+- Localstack Docker image
+- Lombok
+- Awaitility (asynchronous systems testing)
 
-Messages were passed to the microservices via SQS, where listeners were configured to monitor various queues.
+## Usage
 
-Upon receiving a message, it was processed, and the resulting data was stored in DynamoDB and S3. Subsequently, completion messages were dispatched to other queues to trigger further processing. In certain instances, a REST API call was made for notification purposes.
+To run the test framework, follow these steps:
 
-By leveraging LocalStack, I was able to conduct isolated testing of the microservices on my local machine without the need to deploy them to the QA environment. Once I was satisfied with the results, I would deploy the services to the QA environment for further testing confident in the knowledge that it would operate exactly the same.
+1. Clone the repository:
+```
+git clone https://github.com/dsmiles/aws-localstack.git
+cd aws-localstack
+```
 
-This afforded me complete control over the microservices, the data, and the AWS services. Furthermore, it enabled simulation of various failure scenarios to test recovery mechanisms.
-
+2. Run Maven test command:
+```
+mvn test
+```
